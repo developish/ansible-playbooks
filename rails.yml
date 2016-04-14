@@ -1,0 +1,42 @@
+---
+- hosts:
+  - localhost
+
+  connection: local
+  become: yes
+
+  tasks:
+
+  - name: Install base packages
+    apt: name={{item}} state=present
+    with_items:
+    - build-essential
+    - curl
+    - git-core
+
+  - name: Install rails dependencies
+    apt: name={{item}} state=present
+    with_items:
+    - zlib1g-dev
+    - libssl-dev
+    - libreadline-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - sqlite3
+    - libxml2-dev
+    - libxslt1-dev
+    - libcurl4-openssl-dev
+    - python-software-properties
+    - libffi-dev
+
+  - name: Install postgresql dependencies
+    apt: name={{item}} state=present
+    with_items:
+    - postgresql
+    - libpq-dev
+
+  - name: Install capybara-webkit dependencies
+    apt: name={{item}} state=present
+    with_items:
+    - libqt4-dev
+    - libqtwebkit-dev

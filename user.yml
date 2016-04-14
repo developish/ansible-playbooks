@@ -1,0 +1,15 @@
+---
+- hosts:
+  - localhost
+
+  connection: local
+  become: yes
+
+  tasks:
+
+  - name: Create development user
+    user: name=developish
+
+  - name: Setup authorized keys
+    authorized_key: user=developish key=https://github.com/developish.keys
+  
